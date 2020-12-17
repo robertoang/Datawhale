@@ -79,9 +79,27 @@ SELECT product_id, SUM（product_name）
  GROUP BY product_type 
  WHERE regist_date > '2009-09-01';
 
+改正如下
+SELECT product_type, SUM(product_name)
+  FROM product 
+ WHERE regist_date > '2009-09-01'
+ GROUP BY product_type 
+
+2.6
+请编写一条SELECT语句，求出销售单价（sale_price 列）合计值大于进货单价（purchase_price 列）合计值1.5倍的商品种类。执行结果如下所示。
+
+product_type | sum  | sum 
+-------------+------+------
+衣服         | 5000 | 3300
+办公用品     |  600 | 320
+
+select product_type,sum(sale_price),sum(purchase_price)
+from product
+group by product_type
+having sum(sale_price) > 1.5 * sum(purchase_price)
 
 
+2.7
+此前我们曾经使用SELECT语句选取出了product（商品）表中的全部记录。当时我们使用了ORDERBY子句来指定排列顺序，但现在已经无法记起当时如何指定的了。请根据下列执行结果，思考ORDERBY子句的内容。
 
-
-
-
+ ORDER BY regist_date desc,purchase_price
